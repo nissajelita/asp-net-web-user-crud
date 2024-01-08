@@ -1,0 +1,27 @@
+@model List<UserModel>
+
+@{
+    ViewData["Title"] = "Data Master";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Hello, this is users view</p>
+
+<table class="table-responsive">
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nama User</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.id</td>
+                <td>@user.nama</td>
+            </tr>
+        }
+    </tbody>
+</table>
