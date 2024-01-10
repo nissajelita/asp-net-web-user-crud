@@ -1,0 +1,47 @@
+@model UserModel
+@{
+    ViewData["Title"] = "Data Master";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">Edit User</h4>
+    </div>
+    <div class="card-body">
+        <form class="form form-horizontal" id="formUpdateUsers">
+            <div class="row">
+                <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="first-name-column">Nama</label>
+                        <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
+                            name="nama" value="@Model.nama">
+                        <input type="hidden" id="first-name-column" class="form-control" name="id" value="@Model.id">
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <div class="form-group">
+                        <label for="first-name-column">Email</label>
+                        <input type="text" id="first-name-column" class="form-control" placeholder="Email" name="email"
+                            value="@Model.email">
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-12 mb-1">
+            <button type="button" onclick="updateUser()"
+                class="btn btn-primary mr-1 waves-effect waves-float waves-light">Update</button>
+            @* <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button> *@
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateUser() {
+        alert('Test Edit');
+        var form = document.getElementById('formUpdateUsers');
+        form.action = '@Url.Action("Save", "Master")'; // Set the action and method for the form
+        form.method = 'post';
+        form.submit();
+    }
+</script>

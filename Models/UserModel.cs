@@ -4,6 +4,7 @@ namespace todolist.Models
     {
         public int? id { get; set; }
         public string? nama { get; set; }
+        public string? email { get; set; }
 
     }
 }
