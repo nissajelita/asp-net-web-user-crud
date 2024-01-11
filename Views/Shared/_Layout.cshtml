@@ -80,10 +80,10 @@
                                     data-i18n="Users"><i data-feather="user"></i><span
                                         data-i18n="Users">Users</span></a>
                             </li>
-                            <li data-menu=""><a class="dropdown-item d-flex align-items-center" asp-area=""
-                                    asp-controller="Master" asp-action="About" data-toggle="dropdown"
-                                    data-i18n="Users"><i data-feather="user"></i><span
-                                        data-i18n="Users">About</span></a>
+                            <li data-menu=""><a class="dropdown-item d-flex align-items-center" type="button"
+                                    asp-area="" asp-controller="Master" asp-action="About" data-toggle="modal"
+                                    data-target="#modalAbout" data-toggle="dropdown" data-i18n="About"><i
+                                        data-feather="info"></i><span data-i18n="About">About</span></a>
                             </li>
                         </ul>
                     </li>
@@ -128,7 +128,7 @@
     @await Html.PartialAsync("~/Views/Shared/_Script.cshtml")
     <!-- END: PANGGIL SCRIPT-->
 
-
+    @await Html.PartialAsync("~/Views/Master/About/About.cshtml")
 
 
     <script>
