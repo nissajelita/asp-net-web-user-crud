@@ -70,7 +70,7 @@ namespace todolist.Repository
             return users;
         }
 
-        public int Save(UserModel users)
+        public int Save(UserModel obj)
         {
             using (MySqlConnection connection = new MySqlConnection(_connectionString))
             {
@@ -78,7 +78,7 @@ namespace todolist.Repository
 
                 string query = "";
 
-                if (users.id == null || users.id == 0)
+                if (obj.id == null || obj.id == 0)
                 {
                     query = "insert into mst_user (nm_user, email) values(@namaUser, @emailUser)";
                 }
@@ -89,9 +89,9 @@ namespace todolist.Repository
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@namaUser", users.nama);
-                    command.Parameters.AddWithValue("@emailUser", users.email);
-                    command.Parameters.AddWithValue("@idUser", users.id ?? 0);
+                    command.Parameters.AddWithValue("@namaUser", obj.nama);
+                    command.Parameters.AddWithValue("@emailUser", obj.email);
+                    command.Parameters.AddWithValue("@idUser", obj.id ?? 0);
 
                     int rowsUpdated = command.ExecuteNonQuery();
 
@@ -112,9 +112,7 @@ namespace todolist.Repository
                 using (MySqlCommand command = new MySqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@idUser", iD);
-
                     int rowsUpdated = command.ExecuteNonQuery();
-
                     return rowsUpdated;
                 }
             }
