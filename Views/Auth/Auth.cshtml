@@ -1,0 +1,54 @@
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+
+@{
+    ViewData["Title"] = "Login";
+    string successMessage = TempData["Message"] as string ?? "";
+    if (!string.IsNullOrEmpty(successMessage))
+    {
+        <script>
+            alert('@successMessage');
+        </script>
+    }
+}
+
+
+<div class="card mb-0">
+    <div class="card-body">
+        <a href="index.html" class="brand-logo">
+            <h2 class="brand-text text-primary ms-1">LOGIN</h2>
+        </a>
+
+        <h4 class="card-title mb-1">Welcome! 👋</h4>
+        <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
+
+        <form class="auth-login-form mt-2" id="loginForm">
+            <div class="mb-1">
+                <label for="uname" class="form-label">Email</label>
+                <input type="text" class="form-control" id="uname" name="username" placeholder="username"
+                    aria-describedby="uname" tabindex="1" autofocus />
+            </div>
+            <div class="mb-1">
+                <div class="input-group input-group-merge form-password-toggle">
+                    <input type="password" class="form-control form-control-merge" id="login-password" name="password"
+                        tabindex="2"
+                        placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                        aria-describedby="login-password" />
+                    <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                </div>
+            </div>
+        </form>
+        <button onclick="btnLogin()" class="btn btn-primary w-100" tabindex="4">Sign in</button>
+    </div>
+</div>
+
+<script>
+    function btnLogin() {
+        var form = document.getElementById('loginForm');
+        form.action = '@Url.Action("Login", "Auth")'; // Set the action and method for the form
+        form.method = 'post';
+        form.submit();
+    }
+</script>

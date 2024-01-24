@@ -11,7 +11,7 @@
     <div class="card-body">
         <form class="form form-horizontal" id="formUpdateUsers">
             <div class="row">
-                <div class="col-md-6 col-12">
+                <div class="col-lg-6 col-sm-12">
                     <div class="form-group">
                         <label for="first-name-column">Nama</label>
                         <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
@@ -19,11 +19,27 @@
                         <input type="hidden" id="first-name-column" class="form-control" name="id" value="@Model.id">
                     </div>
                 </div>
-                <div class="col-md-6 col-12">
+                <div class="col-lg-6 col-sm-12">
                     <div class="form-group">
                         <label for="first-name-column">Email</label>
                         <input type="text" id="first-name-column" class="form-control" placeholder="Email" name="email"
                             value="@Model.email">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="username-user">Username</label>
+                        <input type="text" id="username-user" class="form-control" placeholder="Username"
+                            name="username" value="@Model.username">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-group">
+                        <label for="password-user">Password</label>
+                        <input type="password" id="password-user" class="form-control" placeholder="Password"
+                            name="password" value="@Model.password">
                     </div>
                 </div>
             </div>

@@ -8,6 +8,9 @@ using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using Org.BouncyCastle.Tls;
 using todolist.Repository;
+using System.Security.Cryptography;
+using System.Text;
+using BCrypt.Net;
 
 
 
@@ -28,6 +31,37 @@ namespace todolist.Controllers
         //     string conn_ = dbContext.GetConnection();
         //     _userRepo = new UserRepo(conn_);
         // }
+
+        // public static string GenerateSalt()
+        // {
+        //     byte[] saltBytes = new byte[16];
+        //     using (var rng = RandomNumberGenerator.Create())
+        //     {
+        //         rng.GetBytes(saltBytes);
+        //     }
+        //     return Convert.ToBase64String(saltBytes);
+        // }
+
+        // // Hash the password using a salt
+        // public static string HashPassword(string password, string salt)
+        // {
+        //     using (var sha256 = SHA256.Create())
+        //     {
+        //         var saltedPassword = Encoding.UTF8.GetBytes(password + salt);
+        //         var hashedPassword = sha256.ComputeHash(saltedPassword);
+        //         return Convert.ToBase64String(hashedPassword);
+        //     }
+        // }
+        public static string GenerateSalt()
+        {
+            return BCrypt.Net.BCrypt.GenerateSalt();
+        }
+
+        // Hash the password using BCrypt with the provided salt
+        public static string HashPassword(string password, string salt)
+        {
+            return BCrypt.Net.BCrypt.HashPassword(password, salt);
+        }
 
         public IActionResult Users()
         {
@@ -51,25 +85,46 @@ namespace todolist.Controllers
             var id = Request.Form["id"];
             var nama = Request.Form["nama"];
             var email = Request.Form["email"];
+            var username = Request.Form["username"];
+            var password = Request.Form["password"];
 
-            UserModel users = new UserModel
-            {
-                id = string.IsNullOrEmpty(id) ? (int?)null : int.Parse(id),
-                nama = nama,
-                email = email
-            };
+            string passwordHash = "";
 
-            int rowsUpdated = _userRepo.Save(users);
-            if (rowsUpdated > 0)
+            if (!string.IsNullOrEmpty(password))
             {
-                TempData["SuccessMessage"] = "Berhasil Menyimpan Data!";
-                return RedirectToAction("Users");
+                string salt = GenerateSalt();
+                passwordHash = HashPassword(password, salt);
+
+            }
+
+            if (string.IsNullOrEmpty(id) && _userRepo.GetUsersByUname(username).username != null)
+            {
+                TempData["Message"] = "Username sudah ada!";
             }
             else
             {
-                return NotFound();
+
+                UserModel users = new UserModel
+                {
+                    id = string.IsNullOrEmpty(id) ? (int?)null : int.Parse(id),
+                    nama = nama,
+                    email = email,
+                    username = username,
+                    password = passwordHash
+                };
+
+                int results = _userRepo.Save(users);
+                if (results > 0)
+                {
+                    TempData["Message"] = "Berhasil Menyimpan Data!";
+                }
+                else
+                {
+                    TempData["Message"] = "Gagal Menyimpan Data!";
+                }
+
             }
-            // return RedirectToAction("Users");
+            return RedirectToAction("Users");
         }
 
         [HttpPost]
@@ -88,10 +143,10 @@ namespace todolist.Controllers
             }
         }
 
-        // public IActionResult About()
-        // {
-        //     return View();
-        // }
+        public IActionResult About()
+        {
+            return View();
+        }
 
         // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         // public IActionResult Error()

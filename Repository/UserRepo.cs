@@ -32,7 +32,8 @@ namespace todolist.Repository
                             UserModel user = new UserModel
                             {
                                 id = reader["id_user"] != DBNull.Value ? (int)reader["id_user"] : (int?)null,
-                                nama = reader["nm_user"] != DBNull.Value ? reader["nm_user"].ToString() : null
+                                nama = reader["nm_user"] != DBNull.Value ? reader["nm_user"].ToString() : null,
+                                username = reader["username"] != DBNull.Value ? reader["username"].ToString() : null
                             };
                             users.Add(user);
                         }
@@ -42,6 +43,35 @@ namespace todolist.Repository
 
             return users;
         }
+        public UserModel GetUsersByUname(string username)
+        {
+            UserModel users = new UserModel(); // Initialize with a default or empty object
+
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+                string query = "SELECT * FROM mst_user WHERE username = @username";
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            users = new UserModel
+                            {
+                                id = reader["id_user"] != DBNull.Value ? (int)reader["id_user"] : (int?)null,
+                                nama = reader["nm_user"] != DBNull.Value ? reader["nm_user"].ToString() : null,
+                                username = reader["username"] != DBNull.Value ? reader["username"].ToString() : null,
+                                password = reader["password"] != DBNull.Value ? reader["password"].ToString() : null
+                            };
+                        }
+                    }
+                }
+            }
+            return users;
+        }
+
 
         public UserModel EditUsers(int iD)
         {
@@ -61,7 +91,9 @@ namespace todolist.Repository
                             {
                                 id = reader["id_user"] != DBNull.Value ? (int)reader["id_user"] : (int?)null,
                                 nama = reader["nm_user"] != DBNull.Value ? reader["nm_user"].ToString() : null,
-                                email = reader["email"].ToString()
+                                email = reader["email"].ToString(),
+                                username = reader["username"].ToString(),
+                                password = reader["password"].ToString()
                             };
                         }
                     }
@@ -78,13 +110,21 @@ namespace todolist.Repository
 
                 string query = "";
 
+
                 if (obj.id == null || obj.id == 0)
                 {
-                    query = "insert into mst_user (nm_user, email) values(@namaUser, @emailUser)";
+                    query = "insert into mst_user (nm_user, email, username, password) values(@namaUser, @emailUser, @username, @password)";
                 }
                 else
                 {
-                    query = "UPDATE mst_user set nm_user = @namaUser, email = @emailUser where id_user = @idUser";
+                    if (obj.password != null && obj.password != "")
+                    {
+                        query = "UPDATE mst_user set nm_user = @namaUser, email = @emailUser, password = @password where id_user = @idUser";
+                    }
+                    else
+                    {
+                        query = "UPDATE mst_user set nm_user = @namaUser, email = @emailUser where id_user = @idUser";
+                    }
                 }
 
                 using (MySqlCommand command = new MySqlCommand(query, connection))
@@ -92,10 +132,35 @@ namespace todolist.Repository
                     command.Parameters.AddWithValue("@namaUser", obj.nama);
                     command.Parameters.AddWithValue("@emailUser", obj.email);
                     command.Parameters.AddWithValue("@idUser", obj.id ?? 0);
+                    command.Parameters.AddWithValue("@username", obj.username);
+                    command.Parameters.AddWithValue("@password", obj.password);
 
-                    int rowsUpdated = command.ExecuteNonQuery();
+                    int results = command.ExecuteNonQuery();
 
-                    return rowsUpdated;
+                    return results;
+                }
+            }
+
+        }
+        public int SaveSession(UserLogin obj)
+        {
+            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                string query = "";
+
+                query = "insert into login_data (id_user, login_time) values(@userId, @loginTime)";
+
+
+                using (MySqlCommand command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@userId", obj.id_user);
+                    command.Parameters.AddWithValue("@loginTime", obj.login_time);
+
+                    int results = command.ExecuteNonQuery();
+
+                    return results;
                 }
             }
 
