@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Data Master";
     var no = 1;
-    string successMessage = TempData["SuccessMessage"] as string;
+    string successMessage = TempData["Message"] as string ?? "";
     if (!string.IsNullOrEmpty(successMessage))
     {
         <script>
@@ -18,47 +18,45 @@
 <p>Hello, this is users view</p>
 
 <section id="data-user">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-datatable">
-                    <div class="card-header">
-                        <h4 class="card-title">Data Users</h4>
-                        <button type="button" class="btn btn-gradient-primary mr-1 waves-effect waves-float waves-light"
-                            data-toggle="modal" data-target="#tambahUser">
-                            Tambah User
-                        </button>
-                    </div>
-                    <table class="datatables table">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Aksi</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var user in Model)
-                            {
-                                <tr>
-                                    <td>@no</td>
-                                    <td>@user.nama</td>
-                                    <td>
-                                        <button type="button"
-                                            class="btn btn-sm btn-primary waves-effect waves-float waves-light mb-1"><i
-                                                onclick="editUsers(@user.id)" data-feather='edit-2'></i></button>
-                                        <button type="button"
-                                            class="btn btn-sm btn-danger waves-effect waves-float waves-light mb-1" onclick="deleteUsers(@user.id)"><i
-                                                data-feather='trash-2'></i></button>
-                                    </td>
-                                </tr>
-                                no++;
-                            }
-                        </tbody>
-                    </table>
-                </div>
+    <div class="card">
+        <div class="card-datatable">
+            <div class="card-header">
+                <h4 class="card-title">Data Users</h4>
+                <button type="button" class="btn btn-gradient-primary mr-1 waves-effect waves-float waves-light"
+                    data-toggle="modal" data-target="#tambahUser">
+                    Tambah User
+                </button>
             </div>
+            <table class="datatables table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>Username</th>
+                        <th>Aksi</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr>
+                            <td>@no</td>
+                            <td>@user.nama</td>
+                            <td>@user.username</td>
+                            <td>
+                                <button type="button"
+                                    class="btn btn-sm btn-primary waves-effect waves-float waves-light mb-1"><i
+                                        onclick="editUsers(@user.id)" data-feather='edit-2'></i></button>
+                                <button type="button"
+                                    class="btn btn-sm btn-danger waves-effect waves-float waves-light mb-1"
+                                    onclick="deleteUsers(@user.id)"><i data-feather='trash-2'></i></button>
+                            </td>
+                        </tr>
+                        no++;
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
@@ -94,6 +92,24 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="username-user">Username</label>
+                                <input type="text" id="username-user" class="form-control" placeholder="Username"
+                                    name="username" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="password-user">Password</label>
+                                <input type="password" id="password-user" class="form-control" placeholder="Password"
+                                    name="password" value="">
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -117,9 +133,9 @@
     @* window.location.href =  '@Url.Action("EditUser", "Master")' + '/' + iD; *@
     }
     function deleteUsers(iD) {
-    if (confirm("Yakin untuk menghapus user tersebut?")) {
-         fetch('/Master/DeleteUsers/' + iD, {
-             method: 'POST', 
+        if (confirm("Yakin untuk menghapus user tersebut?")) {
+            fetch('/Master/DeleteUsers/' + iD, {
+                method: 'POST',
             }).then(data => {
                 alert('data berhasil dihapus!');
                 window.location.reload();
