@@ -20,38 +20,11 @@ namespace todolist.Controllers
     {
         private readonly UserRepo _userRepo;
 
-        public MasterController(IConfiguration configuration)
+        public MasterController(UserRepo userRepo)
         {
-            string conn_ = configuration.GetConnectionString("conn_");
-            _userRepo = new UserRepo(conn_);
+            _userRepo = userRepo;
         }
 
-        // public MasterController(DbContext dbContext)
-        // {
-        //     string conn_ = dbContext.GetConnection();
-        //     _userRepo = new UserRepo(conn_);
-        // }
-
-        // public static string GenerateSalt()
-        // {
-        //     byte[] saltBytes = new byte[16];
-        //     using (var rng = RandomNumberGenerator.Create())
-        //     {
-        //         rng.GetBytes(saltBytes);
-        //     }
-        //     return Convert.ToBase64String(saltBytes);
-        // }
-
-        // // Hash the password using a salt
-        // public static string HashPassword(string password, string salt)
-        // {
-        //     using (var sha256 = SHA256.Create())
-        //     {
-        //         var saltedPassword = Encoding.UTF8.GetBytes(password + salt);
-        //         var hashedPassword = sha256.ComputeHash(saltedPassword);
-        //         return Convert.ToBase64String(hashedPassword);
-        //     }
-        // }
         public static string GenerateSalt()
         {
             return BCrypt.Net.BCrypt.GenerateSalt();
@@ -63,15 +36,20 @@ namespace todolist.Controllers
             return BCrypt.Net.BCrypt.HashPassword(password, salt);
         }
 
-        public IActionResult Users()
+        public async Task<IActionResult> Users()
         {
-            List<UserModel> users = _userRepo.GetUsers();
+            var users = await _userRepo.GetUsers();
             return View("Users/Index", users);
         }
-
-        public IActionResult EditUsers(int iD)
+        public IActionResult Testing()
         {
-            UserModel users = _userRepo.EditUsers(iD);
+            return View("Testing/test");
+        }
+
+
+        public async Task<IActionResult> EditUsers(int iD)
+        {
+            var users = await _userRepo.EditUsers(iD);
             if (users == null)
             {
                 return NotFound(); // Or handle when the user is not found
@@ -80,7 +58,7 @@ namespace todolist.Controllers
         }
 
         [HttpPost]
-        public IActionResult Save()
+        public async Task<IActionResult> Save(UserModel obj)
         {
             var id = Request.Form["id"];
             var nama = Request.Form["nama"];
@@ -97,40 +75,39 @@ namespace todolist.Controllers
 
             }
 
-            if (string.IsNullOrEmpty(id) && _userRepo.GetUsersByUname(username).username != null)
+            if (string.IsNullOrEmpty(id))
             {
-                TempData["Message"] = "Username sudah ada!";
+                var user = await _userRepo.GetUsersByUname(username);
+                if (user != null)
+                {
+                    TempData["Message"] = "Username sudah ada!";
+                }
             }
-            else
+
+            obj.id_user = !string.IsNullOrEmpty(id) ? int.Parse(id) : 0;
+            obj.nm_user = nama;
+            obj.email = email;
+            obj.username = username;
+            obj.password = passwordHash;
+
+
+            try
+            {
+                await _userRepo.Save(obj);
+            }
+            catch (System.Exception e)
             {
 
-                UserModel users = new UserModel
-                {
-                    id = string.IsNullOrEmpty(id) ? (int?)null : int.Parse(id),
-                    nama = nama,
-                    email = email,
-                    username = username,
-                    password = passwordHash
-                };
-
-                int results = _userRepo.Save(users);
-                if (results > 0)
-                {
-                    TempData["Message"] = "Berhasil Menyimpan Data!";
-                }
-                else
-                {
-                    TempData["Message"] = "Gagal Menyimpan Data!";
-                }
-
+                TempData["Message"] = e.Message;
             }
+
             return RedirectToAction("Users");
         }
 
         [HttpPost]
-        public IActionResult DeleteUsers(int iD)
+        public async Task<IActionResult> DeleteUsers(int iD)
         {
-            int rowsUpdated = _userRepo.Delete(iD);
+            int rowsUpdated = await _userRepo.Delete(iD);
 
             if (rowsUpdated > 0)
             {
@@ -145,7 +122,7 @@ namespace todolist.Controllers
 
         public IActionResult About()
         {
-            return View();
+            return View("About");
         }
 
         // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

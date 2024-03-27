@@ -1,186 +1,111 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+// using System;
+// using System.Collections.Generic;
+// using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 using todolist.Models;
+using todolist.Helpers;
+using Dapper;
 
 namespace todolist.Repository
 {
     public class UserRepo
     {
-        private readonly string _connectionString;
+        // private readonly string _connectionString;
 
-        public UserRepo(string connectionString)
+        // public UserRepo(string connectionString)
+        // {
+        //     _connectionString = connectionString;
+        // }
+
+        private DataContext _context;
+
+        public UserRepo(DataContext context)
         {
-            _connectionString = connectionString;
+            _context = context;
         }
 
-        public List<UserModel> GetUsers()
+        public async Task<IEnumerable<UserModel>> GetUsers()
         {
-            List<UserModel> users = new List<UserModel>();
+            using var conn = _context.CreateConnection();
+            string query = "SELECT * FROM mst_user where deleted_status is null";
+            return await conn.QueryAsync<UserModel>(query);
 
-            using (MySqlConnection connection = new MySqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = "SELECT * FROM mst_user where deleted_status is null";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            UserModel user = new UserModel
-                            {
-                                id = reader["id_user"] != DBNull.Value ? (int)reader["id_user"] : (int?)null,
-                                nama = reader["nm_user"] != DBNull.Value ? reader["nm_user"].ToString() : null,
-                                username = reader["username"] != DBNull.Value ? reader["username"].ToString() : null
-                            };
-                            users.Add(user);
-                        }
-                    }
-                }
-            }
-
+        }
+        public async Task<UserModel> GetUsersByUname(string username)
+        {
+            // Initialize with a default or empty object
+            using var conn = _context.CreateConnection();
+            string query = "SELECT * FROM mst_user WHERE username = @username";
+            var users = await conn.QuerySingleOrDefaultAsync<UserModel>(query, new { username });
             return users;
-        }
-        public UserModel GetUsersByUname(string username)
-        {
-            UserModel users = new UserModel(); // Initialize with a default or empty object
 
-            using (MySqlConnection connection = new MySqlConnection(_connectionString))
-            {
-                connection.Open();
-                string query = "SELECT * FROM mst_user WHERE username = @username";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@username", username);
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            users = new UserModel
-                            {
-                                id = reader["id_user"] != DBNull.Value ? (int)reader["id_user"] : (int?)null,
-                                nama = reader["nm_user"] != DBNull.Value ? reader["nm_user"].ToString() : null,
-                                username = reader["username"] != DBNull.Value ? reader["username"].ToString() : null,
-                                password = reader["password"] != DBNull.Value ? reader["password"].ToString() : null
-                            };
-                        }
-                    }
-                }
-            }
+
+        }
+
+
+        public async Task<UserModel> EditUsers(int iD)
+        {
+            using var conn = _context.CreateConnection();
+            string query = "SELECT * FROM mst_user where id_user = @iD";
+            var users = await conn.QueryFirstAsync<UserModel>(query, new { iD });
             return users;
         }
 
-
-        public UserModel EditUsers(int iD)
+        public async Task Save(UserModel obj)
         {
-            UserModel users = new UserModel();
-            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            using var conn = _context.CreateConnection();
+            string query = "";
+
+            if (obj.id_user == 0)
             {
-                connection.Open();
-                string query = "SELECT * FROM mst_user where id_user = @userId";
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@userId", iD);
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            users = new UserModel
-                            {
-                                id = reader["id_user"] != DBNull.Value ? (int)reader["id_user"] : (int?)null,
-                                nama = reader["nm_user"] != DBNull.Value ? reader["nm_user"].ToString() : null,
-                                email = reader["email"].ToString(),
-                                username = reader["username"].ToString(),
-                                password = reader["password"].ToString()
-                            };
-                        }
-                    }
-                }
+                query = "INSERT INTO mst_user (nm_user, email, username, password) VALUES (@namaUser, @emailUser, @username, @password)";
             }
-            return users;
-        }
-
-        public int Save(UserModel obj)
-        {
-            using (MySqlConnection connection = new MySqlConnection(_connectionString))
+            else
             {
-                connection.Open();
-
-                string query = "";
-
-
-                if (obj.id == null || obj.id == 0)
+                if (!string.IsNullOrEmpty(obj.password))
                 {
-                    query = "insert into mst_user (nm_user, email, username, password) values(@namaUser, @emailUser, @username, @password)";
+                    query = "UPDATE mst_user SET nm_user = @namaUser, email = @emailUser, password = @password WHERE id_user = @idUser";
                 }
                 else
                 {
-                    if (obj.password != null && obj.password != "")
-                    {
-                        query = "UPDATE mst_user set nm_user = @namaUser, email = @emailUser, password = @password where id_user = @idUser";
-                    }
-                    else
-                    {
-                        query = "UPDATE mst_user set nm_user = @namaUser, email = @emailUser where id_user = @idUser";
-                    }
-                }
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@namaUser", obj.nama);
-                    command.Parameters.AddWithValue("@emailUser", obj.email);
-                    command.Parameters.AddWithValue("@idUser", obj.id ?? 0);
-                    command.Parameters.AddWithValue("@username", obj.username);
-                    command.Parameters.AddWithValue("@password", obj.password);
-
-                    int results = command.ExecuteNonQuery();
-
-                    return results;
+                    query = "UPDATE mst_user SET nm_user = @namaUser, email = @emailUser WHERE id_user = @idUser";
                 }
             }
 
-        }
-        public int SaveSession(UserLogin obj)
-        {
-            using (MySqlConnection connection = new MySqlConnection(_connectionString))
-            {
-                connection.Open();
-
-                string query = "";
-
-                query = "insert into login_data (id_user, login_time) values(@userId, @loginTime)";
-
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@userId", obj.id_user);
-                    command.Parameters.AddWithValue("@loginTime", obj.login_time);
-
-                    int results = command.ExecuteNonQuery();
-
-                    return results;
-                }
-            }
-
+            await conn.ExecuteAsync(query, new { namaUser = obj.nm_user, emailUser = obj.email, username = obj.username, password = obj.password, idUser = obj.id_user });
         }
 
-        public int Delete(int iD)
+        //     public int SaveSession(UserLogin obj)
+        //     {
+        //         using (MySqlConnection connection = new MySqlConnection(_connectionString))
+        //         {
+        //             connection.Open();
+
+        //             string query = "";
+
+        //             query = "insert into login_info (id_user, login_time) values(@userId, @loginTime)";
+
+
+        //             using (MySqlCommand command = new MySqlCommand(query, connection))
+        //             {
+        //                 command.Parameters.AddWithValue("@userId", obj.id_user);
+        //                 command.Parameters.AddWithValue("@loginTime", obj.login_time);
+
+        //                 int results = command.ExecuteNonQuery();
+
+        //                 return results;
+        //             }
+        //         }
+
+        //     }
+
+        public async Task<dynamic> Delete(int iD)
         {
-            using (MySqlConnection connection = new MySqlConnection(_connectionString))
-            {
-                connection.Open();
+            using var conn = _context.CreateConnection();
+            string query = "UPDATE mst_user set deleted_status = 1 where id_user = @idUser";
+            int rowsUpdated = await conn.ExecuteAsync(query, new { idUser = iD });
 
-                string query = "UPDATE mst_user set deleted_status = 1 where id_user = @idUser";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@idUser", iD);
-                    int rowsUpdated = command.ExecuteNonQuery();
-                    return rowsUpdated;
-                }
-            }
+            return rowsUpdated;
         }
     }
 

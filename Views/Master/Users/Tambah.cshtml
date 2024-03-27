@@ -15,8 +15,9 @@
                     <div class="form-group">
                         <label for="first-name-column">Nama</label>
                         <input type="text" id="first-name-column" class="form-control" placeholder="First Name"
-                            name="nama" value="@Model.nama">
-                        <input type="hidden" id="first-name-column" class="form-control" name="id" value="@Model.id">
+                            name="nama" value="@Model.nm_user">
+                        <input type="hidden" id="first-name-column" class="form-control" name="id"
+                            value="@Model.id_user">
                     </div>
                 </div>
                 <div class="col-lg-6 col-sm-12">
@@ -45,7 +46,7 @@
             </div>
         </form>
         <div class="col-12 mb-1">
-            <button type="button" onclick="updateUser(@Model.id)"
+            <button type="button" onclick="updateUser(@Model.id_user)"
                 class="btn btn-primary mr-1 waves-effect waves-float waves-light">Update</button>
             @* <button type="reset" class="btn btn-outline-secondary waves-effect">Reset</button> *@
         </div>

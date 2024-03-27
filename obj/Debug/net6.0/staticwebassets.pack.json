@@ -6925,6 +6925,158 @@
       "PackagePath": "staticwebassets\\assets\\css\\style.css"
     },
     {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap4.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap4.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap4.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap4.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap5.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap5.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap5.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.bootstrap5.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.bulma.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.bulma.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.bulma.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.bulma.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.dataTables.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.dataTables.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.dataTables.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.dataTables.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.foundation.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.foundation.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.foundation.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.foundation.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.jqueryui.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.jqueryui.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.jqueryui.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.jqueryui.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.semanticui.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.semanticui.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\css\\dataTables.semanticui.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\css\\dataTables.semanticui.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap4.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap4.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap4.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap4.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap5.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap5.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap5.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.bootstrap5.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.bulma.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.bulma.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.bulma.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.bulma.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.dataTables.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.dataTables.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.dataTables.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.dataTables.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.foundation.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.foundation.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.foundation.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.foundation.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.jqueryui.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.jqueryui.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.jqueryui.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.jqueryui.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.semanticui.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.semanticui.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\DataTables\\js\\dataTables.semanticui.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\DataTables\\js\\dataTables.semanticui.min.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\datatables.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\datatables.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\datatables.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\datatables.js"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\datatables.min.css",
+      "PackagePath": "staticwebassets\\assets\\datatables\\datatables.min.css"
+    },
+    {
+      "Id": "J:\\github\\todolist\\wwwroot\\assets\\datatables\\datatables.min.js",
+      "PackagePath": "staticwebassets\\assets\\datatables\\datatables.min.js"
+    },
+    {
       "Id": "J:\\github\\todolist\\wwwroot\\assets\\js\\scripts.js",
       "PackagePath": "staticwebassets\\assets\\js\\scripts.js"
     },

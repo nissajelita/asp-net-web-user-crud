@@ -1,16 +1,12 @@
 // using MySql.Data.MySqlClient;
 using Microsoft.AspNetCore.Mvc;
 using todolist.Models;
-using System.Diagnostics;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
-using MySql.Data.MySqlClient;
-using Microsoft.Extensions.Configuration;
-using Org.BouncyCastle.Tls;
 using todolist.Repository;
-using System.Security.Cryptography;
-using System.Text;
-using BCrypt.Net;
+using todolist.Helpers;
+// using System.Text;
+// using BCrypt.Net;
+// using Microsoft.AspNetCore.Http;
+
 
 namespace todolist.Controllers
 {
@@ -18,10 +14,14 @@ namespace todolist.Controllers
     {
         private readonly UserRepo _userRepo;
 
-        public AuthController(IConfiguration configuration)
+        private DataContext _context;
+
+        public AuthController(DataContext context, UserRepo userRepo)
         {
-            string conn_ = configuration.GetConnectionString("conn_");
-            _userRepo = new UserRepo(conn_);
+            // string conn_ = configuration.GetConnectionString("conn_");
+            // _userRepo = new UserRepo(conn_);
+            _userRepo = userRepo;
+            _context = context;
         }
 
         public static string GenerateSalt()
@@ -45,14 +45,13 @@ namespace todolist.Controllers
         {
             return View();
         }
-        public IActionResult Login()
+        public async Task<IActionResult> Login()
         {
             var username = Request.Form["username"];
             var password = Request.Form["password"];
 
-            // UserModel users = new UserModel;
 
-            UserModel users = _userRepo.GetUsersByUname(username);
+            var users = await _userRepo.GetUsersByUname(username);
 
             if (users.username == null)
             {
@@ -66,12 +65,13 @@ namespace todolist.Controllers
 
                 if (checkPassword)
                 {
-                    UserLogin data = new UserLogin
-                    {
-                        id_user = users.id,
-                        login_time = DateTime.Now
-                    };
-                    _userRepo.SaveSession(data);
+                    // UserLogin data = new UserLogin
+                    // {
+                    //     id_user = users.id_user,
+                    //     login_time = DateTime.Now
+                    // };
+                    // _userRepo.SaveSession(data);
+                    // HttpContext.Session.SetString("Username", users.username); ;
                     TempData["Message"] = "Login Berhasil!";
                     return RedirectToAction("Index", "Home");
                 }

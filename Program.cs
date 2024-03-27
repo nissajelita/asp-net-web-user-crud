@@ -1,7 +1,14 @@
+using todolist.Helpers;
+using todolist.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.Configure<DbSetting>(builder.Configuration.GetSection("conn_"));
+builder.Services.AddSingleton<DataContext>();
+builder.Services.AddScoped<UserRepo>();
 
 var app = builder.Build();
 
@@ -22,7 +29,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    // pattern: "{controller=Home}/{action=Index}/{id?}");
-    pattern: "{controller=Auth}/{action=Auth}/{id?}");
+// pattern: "{controller=Home}/{action=Index}/{id?}");
+pattern: "{controller=Auth}/{action=Auth}/{id?}");
 
 app.Run();
