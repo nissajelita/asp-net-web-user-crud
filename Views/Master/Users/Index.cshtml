@@ -27,38 +27,37 @@
                     Tambah User
                 </button>
             </div>
-            <table id="testDataTb" class="DataTable datatables-basic table">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>ID</th>
-                        <th>Nama</th>
-                        <th>Username</th>
-                        <th>Aksi</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var user in Model)
-                    {
+            <div class="card p-2">
+                <table class="table table-reesponsive">
+                    <thead>
                         <tr>
-                            <td>@no</td>
-                            <td>@user.id_user</td>
-                            <td>@user.nm_user</td>
-                            <td>@user.username</td>
-                            <td>
-                                <button type="button"
-                                    class="btn btn-sm btn-primary waves-effect waves-float waves-light mb-1"><i
-                                        onclick="editUsers(@user.id_user)" data-feather='edit-2'></i></button>
-                                <button type="button"
-                                    class="btn btn-sm btn-danger waves-effect waves-float waves-light mb-1"
-                                    onclick="deleteUsers(@user.id_user)"><i data-feather='trash-2'></i></button>
-                            </td>
+                            <th class="text-center">No</th>
+                            <th>Nama</th>
+                            <th>Username</th>
+                            <th class="text-center">Aksi</th>
                         </tr>
-                        no++;
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td class="text-center">@no</td>
+                                <td>@user.nm_user</td>
+                                <td>@user.username</td>
+                                <td class="text-center">
+                                    <button type="button"
+                                        class="btn btn-sm btn-primary waves-effect waves-float waves-light mb-1"><i
+                                            onclick="editUsers(@user.id_user)" data-feather='edit-2'></i></button>
+                                    <button type="button"
+                                        class="btn btn-sm btn-danger waves-effect waves-float waves-light mb-1"
+                                        onclick="deleteUsers(@user.id_user)"><i data-feather='trash-2'></i></button>
+                                </td>
+                            </tr>
+                            no++;
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </section>
@@ -123,6 +122,7 @@
         </div>
     </div>
 </div>
+
 
 <script>
     function simpan() {

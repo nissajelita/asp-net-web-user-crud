@@ -9,81 +9,81 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = todolist
 build_property.RootNamespace = todolist
-build_property.ProjectDir = J:\github\todolist\
+build_property.ProjectDir = j:\github\todolist\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = J:\github\todolist
+build_property.MSBuildProjectDirectory = j:\github\todolist
 build_property._RazorSourceGeneratorDebug = 
 
-[J:/github/todolist/Views/Auth/Auth.cshtml]
+[j:/github/todolist/Views/Auth/Auth.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxBdXRoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Home/Index.cshtml]
+[j:/github/todolist/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Home/Privacy.cshtml]
+[j:/github/todolist/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Master/About.cshtml]
+[j:/github/todolist/Views/Master/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyXEFib3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Master/About/About.cshtml]
+[j:/github/todolist/Views/Master/About/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyXEFib3V0XEFib3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Master/Testing/test.cshtml]
+[j:/github/todolist/Views/Master/Testing/test.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyXFRlc3RpbmdcdGVzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Master/Users/Edit.cshtml]
+[j:/github/todolist/Views/Master/Users/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyXFVzZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Master/Users/Index.cshtml]
+[j:/github/todolist/Views/Master/Users/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyXFVzZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Master/Users/Tambah.cshtml]
+[j:/github/todolist/Views/Master/Users/Tambah.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFzdGVyXFVzZXJzXFRhbWJhaC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Shared/Error.cshtml]
+[j:/github/todolist/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Shared/_Css.cshtml]
+[j:/github/todolist/Views/Shared/_Css.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Dc3MuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Shared/_LayoutTemplateAsp.cshtml]
+[j:/github/todolist/Views/Shared/_LayoutTemplateAsp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRUZW1wbGF0ZUFzcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Shared/_LoginLayout.cshtml]
+[j:/github/todolist/Views/Shared/_LoginLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Shared/_Script.cshtml]
+[j:/github/todolist/Views/Shared/_Script.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TY3JpcHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Shared/_ValidationScriptsPartial.cshtml]
+[j:/github/todolist/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/_ViewImports.cshtml]
+[j:/github/todolist/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/_ViewStart.cshtml]
+[j:/github/todolist/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[J:/github/todolist/Views/Shared/_Layout.cshtml]
+[j:/github/todolist/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-o7197gw0ce
